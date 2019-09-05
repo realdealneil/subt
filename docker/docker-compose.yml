@@ -38,7 +38,6 @@ services:
     environment:
       - DISPLAY
       - QT_X11_NO_MITSHM=1
-      - XAUTHORITY="/tmp/.docker.xauth"
       - IGN_PARTITION=sim
       - IGN_IP=172.28.1.1
     privileged: true
@@ -46,7 +45,6 @@ services:
     security_opt:
       - seccomp=unconfined
     volumes:
-      - "/tmp/.docker.xauth:/tmp/.docker.xauth"
       - "/tmp/.X11-unix:/tmp/.X11-unix"
       - "/etc/localtime:/etc/localtime:ro"
       - "/dev/input:/dev/input" 
