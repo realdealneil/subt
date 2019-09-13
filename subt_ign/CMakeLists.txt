@@ -111,6 +111,28 @@ install(TARGETS ${game_logic_plugin_name}
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin)
 
+# Create the libLeakDetectorPluginIgn.so library.
+set(leak_detector_plugin_name LeakDetectorPlugin)
+add_library(${leak_detector_plugin_name} src/LeakDetectorPlugin.cc)
+target_include_directories(${leak_detector_plugin_name}
+  PRIVATE ${CATKIN_DEVEL_PREFIX}/include)
+target_link_libraries(${leak_detector_plugin_name}
+  PRIVATE
+    ignition-gazebo${IGN_GAZEBO_VER}::core
+    ignition-common3::ignition-common3
+    ignition-launch1::ignition-launch1
+    ignition-math6::ignition-math6
+    ignition-msgs4::ignition-msgs4
+    ignition-plugin1::loader
+    ignition-transport7::ignition-transport7
+    ${catkin_LIBRARIES}
+    ${protobuf_lib_name}
+)
+install(TARGETS ${leak_detector_plugin_name}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin)
+
 set(artifact_validator_name ArtifactValidator)
 add_library(${artifact_validator_name} SHARED src/ArtifactValidator.cc)
 target_link_libraries(${artifact_validator_name}
