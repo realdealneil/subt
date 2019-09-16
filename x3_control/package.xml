@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>x3_control</name>
+  <version>0.0.1</version>
+  <description>X3 controller configurations</description>
+
+  <author email="caguero@openrobotics.org">Carlos Aguero</author>
+  <maintainer email="caguero@openrobotics.org">Carlos Aguero</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <exec_depend>subt_example</exec_depend>
+  <exec_depend>subt_rotors_controller</exec_depend>
+  <exec_depend>robot_localization</exec_depend>
+
+  <export>
+  </export>
+</package>

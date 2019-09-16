@@ -70,10 +70,8 @@ RUN sudo /bin/sh -c 'echo "deb [trusted=yes] http://packages.ros.org/ros/ubuntu 
     ros-melodic-spacenav-node \
     ros-melodic-tf2-sensor-msgs \
     ros-melodic-twist-mux \
-# ros-melodic-velodyne-simulator \
-#  ros-melodic-velodyne-gazebo-plugins \
-# ros-melodic-rotors-gazebo \
     ros-melodic-rviz-imu-plugin \
+    ros-melodic-rotors-control \
  && sudo rosdep init \
  && sudo apt-get clean
 
@@ -83,26 +81,26 @@ RUN rosdep update
 # so we need to workaround this using a force overwrite
 # Do this before installing ign-gazebo
 RUN sudo /bin/sh -c 'echo "deb [trusted=yes] http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' \
- && sudo /bin/sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-prerelease `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-prerelease.list' \
  && sudo /bin/sh -c 'wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -' \
- && sudo /bin/sh -c 'apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116' \
- && sudo apt-get update 
+ && sudo /bin/sh -c 'apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654'
 
 # install ign-blueprint
-RUN sudo apt-get install -y \
+RUN sudo apt-get update \
+ && sudo apt-get install -y \
     ignition-blueprint \
  && sudo apt-get clean
 
 # install the ros to ign bridge
-RUN sudo apt-get install -y \
-    ros1-ign-bridge \
+RUN sudo apt-get update \
+ && sudo apt-get install -y \
+    ros-melodic-ros1-ign \
  && sudo apt-get clean
 
 # Clone all the subt models so that you don't download them every time
 # docker is run
 RUN mkdir -p subt_ws/src \
  && cd subt_ws/src \
- && hg clone https://bitbucket.org/osrf/subt -b multicoptor_demo
+ && hg clone https://bitbucket.org/osrf/subt -b tunnel_circuit
 
 # Download virtual stix models
 RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Edgar Mine Virtual STIX" -v 4
@@ -115,11 +113,51 @@ RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/mode
 RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Rescue Randy Sitting" -v 4
 RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Samsung J8 Black" -v 4
 
+# Download the robot models
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X1 Config 1" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X1 Config 2" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X1 Config 3" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X1 Config 4" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X1 Config 5" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X2 Config 1" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X2 Config 2" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X2 Config 3" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X2 Config 4" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X2 Config 5" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X2 Config 6" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X3 UAV Config 1" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X3 UAV Config 2" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X3 UAV Config 3" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X3 UAV Config 4" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X4 UAV Config 1" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X4 UAV Config 2" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X4 UAV Config 3" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X4 UAV Config 4" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/X4 UAV Config 5" -v 4
+
+# Download the tunnel circuit models
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/subt_tunnel_staging_area" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile 1" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile 2" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile 3" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile 4" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile 5" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile 6" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile 7" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Tunnel Tile Blocker" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Constrained Tunnel Tile Short" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Constrained Tunnel Tile Tall" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Rough Tunnel Tile 4-way Intersection" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Rough Tunnel Tile 90-degree Turn" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Rough Tunnel Tile Straight" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Rough Tunnel Tile Ramp" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Rough Tunnel Tile Vertical Shaft" -v 4
+
 WORKDIR /home/$USERNAME/subt_ws
 
 # Install Rotors
-RUN wget https://s3.amazonaws.com/osrf-distributions/subt_robot_examples/releases/subt_robot_examples_latest.tgz
-RUN tar xvf subt_robot_examples_latest.tgz
+# RUN wget https://s3.amazonaws.com/osrf-distributions/subt_robot_examples/releases/subt_robot_examples_latest.tgz
+# RUN tar xvf subt_robot_examples_latest.tgz
 
 RUN /bin/bash -c 'source /opt/ros/melodic/setup.bash && catkin_make install'
 

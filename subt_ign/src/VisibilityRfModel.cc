@@ -15,9 +15,9 @@
  *
 */
 
+#include <subt_rf_interface/subt_rf_model.h>
 #include <ignition/common/Console.hh>
 #include <subt_ign/VisibilityRfModel.hh>
-#include <subt_rf_interface/subt_rf_model.h>
 
 using namespace subt;
 using namespace rf_interface;
@@ -27,26 +27,32 @@ using namespace visibilityModel;
 VisibilityModel::VisibilityModel(
     visibilityModel::RfConfiguration _visibilityConfig,
     range_model::rf_configuration _rangeConfig,
-    const std::string &_worldName,
-    const std::string &_worldDir)
+    const std::string &_worldName)
     : visibilityConfig(_visibilityConfig),
       defaultRangeConfig(_rangeConfig)
 {
-  if (!this->visibilityTable.Load(_worldName, _worldDir))
+  if (!this->visibilityTable.Load(_worldName))
   {
     ignerr << "Unable to load visibility table data files\n";
+    return;
   }
-  else
-  {
-    ignition::transport::AdvertiseServiceOptions opts;
-    opts.SetScope(ignition::transport::Scope_t::HOST);
-    this->node.Advertise("/subt/comms_model/visualize",
-        &VisibilityModel::VisualizeVisibility, this, opts);
 
-    // Subscribe to pose messages.
-    this->node.Subscribe("/world/" + _worldName + "/pose/info",
-        &VisibilityModel::OnPose, this);
-  }
+  ignition::transport::AdvertiseServiceOptions opts;
+  opts.SetScope(ignition::transport::Scope_t::HOST);
+  this->node.Advertise("/subt/comms_model/visualize",
+      &VisibilityModel::VisualizeVisibility, this, opts);
+
+  // Subscribe to pose messages.
+  this->node.Subscribe("/world/" + _worldName + "/pose/info",
+      &VisibilityModel::OnPose, this);
+
+  this->initialized = true;
+}
+
+/////////////////////////////////////////////
+bool VisibilityModel::Initialized() const
+{
+  return this->initialized;
 }
 
 /////////////////////////////////////////////
@@ -107,7 +113,7 @@ bool VisibilityModel::VisualizeVisibility(const ignition::msgs::StringMsg &_req,
   indexToColor[3] = "Gazebo/TurquoiseGlow";
   indexToColor[4] = "Gazebo/BlueGlow";
 
-  for(int i=0; i < 5; ++i) {
+  for (int i = 0; i < 5; ++i) {
     markerMsg.set_id(i);
 
     ignition::msgs::Material *matMsg = markerMsg.mutable_material();
@@ -137,9 +143,9 @@ bool VisibilityModel::VisualizeVisibility(const ignition::msgs::StringMsg &_req,
     double cost = this->visibilityTable.Cost(from, to);
     if (cost <= this->visibilityConfig.commsCostMax)
     {
-      auto m = perCostMarkers.find((int)
+      auto m = perCostMarkers.find(static_cast<int>(
           (((this->visibilityConfig.commsCostMax+1.0)/5.0) *
-           cost/10.0) );
+           cost/10.0)) );
 
       if (m == perCostMarkers.end())
       {

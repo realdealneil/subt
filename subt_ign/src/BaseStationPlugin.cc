@@ -31,15 +31,31 @@ BaseStationPlugin::BaseStationPlugin()
 }
 
 //////////////////////////////////////////////////
+BaseStationPlugin::~BaseStationPlugin()
+{
+  {
+    std::lock_guard<std::mutex> lk(this->mutex);
+    this->running = false;
+  }
+  this->cv.notify_all();
+  this->ackThread.join();
+}
+
+
+//////////////////////////////////////////////////
 bool BaseStationPlugin::Load(const tinyxml2::XMLElement *)
 {
-  this->client.reset(new subt::CommsClientIgn("base_station", true));
+  this->client.reset(new subt::CommsClient("base_station", true, true));
   this->client->Bind(&BaseStationPlugin::OnArtifact, this);
+
+  // Spawn a thread to reply outside of the callback.
+  this->ackThread = std::thread([this](){this->RunLoop();});
+
   return true;
 }
 
 //////////////////////////////////////////////////
-void BaseStationPlugin::OnArtifact(const std::string &/*_srcAddress*/,
+void BaseStationPlugin::OnArtifact(const std::string &_srcAddress,
   const std::string &/*_dstAddress*/, const uint32_t /*_dstPort*/,
   const std::string &_data)
 {
@@ -50,6 +66,48 @@ void BaseStationPlugin::OnArtifact(const std::string &/*_srcAddress*/,
     return;
   }
 
+  unsigned int timeout = 1000;
+  bool result;
+
+  subt::msgs::ArtifactScore newScore;
+
   // Report this artifact to the scoring plugin.
-  this->node.Request(kNewArtifactSrv, artifact);
+  this->node.Request(kNewArtifactSrv, artifact, timeout, newScore, result);
+
+  // If successfully reported, forward to requester.
+  if (result)
+  {
+    std::scoped_lock<std::mutex> lk(this->mutex);
+    this->scores[_srcAddress].push_back(newScore);
+  }
+  else
+  {
+    ignerr << "Error scoring artifact" << std::endl;
+  }
 }
+
+//////////////////////////////////////////////////
+void BaseStationPlugin::RunLoop()
+{
+  while (this->running)
+  {
+    // Send the scores, and clear the score list.
+    {
+      std::scoped_lock<std::mutex> lk(this->mutex);
+      for (const std::pair<std::string, std::vector<subt::msgs::ArtifactScore>>
+          &scorePair : this->scores)
+      {
+        for (const subt::msgs::ArtifactScore &score : scorePair.second)
+        {
+          std::string data;
+          score.SerializeToString(&data);
+          this->client->SendTo(data, scorePair.first);
+        }
+      }
+      this->scores.clear();
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  }
+  igndbg << "Terminating run loop" << std::endl;
+}
+

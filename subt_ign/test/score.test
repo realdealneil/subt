@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <test test-name="score" pkg="subt_ign" type="test_score" time-limit="200.0" />
+
+</launch>
