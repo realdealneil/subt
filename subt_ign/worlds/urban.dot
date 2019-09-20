@@ -112,6 +112,7 @@ graph {
   42 -- 51  [label=6];  /* Intersection */
   44 -- 46  [label=6];  /* Intersection */
   44 -- 54  [label=6];  /* Intersection */
+  44 -- 45  [label=6];  /* TODO: currently manually added until multiple tiles in same cell feature is added */
   46 -- 47  [label=6];  /* Intersection */
   46 -- 55  [label=6];  /* Intersection */
   47 -- 48  [label=3];  /* Intersection */
