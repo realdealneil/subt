@@ -34,7 +34,7 @@ namespace subt
   class VisibilityTable
   {
     /// \brief Min X to sample.
-    public: static const int32_t kMinX = -20;
+    public: static const int32_t kMinX = -500;
 
     /// \brief Max X to sample.
     public: static const int32_t kMaxX = 2100;
