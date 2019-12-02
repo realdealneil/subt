@@ -413,7 +413,7 @@
         <ref>tile_7</ref>
         <pose>8.000000 -16.000000 0.000000 0 0 0</pose>
         <geometry><box><size>352.000000 80.000000 130.000000</size></box></geometry>
-        <buffer>10.000000</buffer>
+        <buffer>9.000000</buffer>
       </level>
       <level name="level2">
         <ref>gas_1</ref>
