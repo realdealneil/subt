@@ -26,6 +26,7 @@ steps:
     cp -r  ~/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models/* /tmp/fuel_models
 
 1. convert model.sdf resource path and update model directory layout
+
     cd /tmp/fuel_models
     find . -name "*.sdf" -exec sed -i 's/file:\/\/.*\/models\/\(.*\)\/[0-9]\//model:\/\/\1\//g' {} \;
     for d in */; do v=$(ls "$d"); mv  "$d"/$v/* "$d"; done
