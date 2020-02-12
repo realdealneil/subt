@@ -208,6 +208,11 @@ RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/mode
 RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Urban Large Room Split" -v 4
 RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/Urban Large Room Split Lights" -v 4
 
+# Download niosh models
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/NIOSH Mine Virtual Tunnel EX" -v 4
+RUN ign fuel download --url "https://fuel.ignitionrobotics.org/openrobotics/models/NIOSH Mine Virtual Tunnel SR" -v 4
+
+
 WORKDIR /home/$USERNAME/subt_ws
 
 # Install Rotors
