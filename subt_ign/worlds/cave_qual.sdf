@@ -628,6 +628,103 @@
        <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30</uri>
     </include>
 
+    <include>
+      <name>rescue_randy_1</name>
+      <pose>38.2 75.96 0.1 -0.07 0 1.40</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Rescue Randy Sitting</uri>
+    </include>
+
+
+    <include>
+      <name>rescue_randy_2</name>
+      <pose>144.17 -26.87 29.60 -0.01 -0 -2.82</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Rescue Randy Sitting</uri>
+    </include>
+
+    <include>
+      <name>rescue_randy_3</name>
+      <pose>66.60 -187.81 31.13 0 0 -1.03</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Rescue Randy Sitting</uri>
+    </include>
+
+    <include>
+      <name>rescue_randy_4</name>
+      <pose>297.88 97.04 0.16 -0.16 0 -1.78</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Rescue Randy Sitting</uri>
+    </include>
+
+    <include>
+      <name>rescue_randy_5</name>
+      <pose>149.8 -158.17 20.75 0 0 2.98</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Rescue Randy Sitting</uri>
+    </include>
+
+    <include>
+      <name>backpack_1</name>
+      <pose>44.12 -30.30 1.07 0.18 -0.08 2.12</pose>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/JanSport Backpack Red</uri>
+    </include>
+
+    <include>
+      <name>backpack_2</name>
+      <pose>103.65 0 0.18 -0.09 0 -1.31</pose>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/JanSport Backpack Red</uri>
+    </include>
+
+    <include>
+      <name>backpack_3</name>
+      <pose>357.88 5.47 20.32 0 0 0</pose>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/JanSport Backpack Red</uri>
+    </include>
+
+    <include>
+      <name>backpack_4</name>
+      <pose>48.86 -346.54 40.19 -0.16 0.11 0.64</pose>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/JanSport Backpack Red</uri>
+    </include>
+
+    <include>
+      <name>backpack_5</name>
+      <pose>271.80 -218.32 30.35 0 -0.2 0</pose>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/JanSport Backpack Red</uri>
+    </include>
+
+    <include>
+      <name>phone_1</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Samsung J8 Black</uri>
+      <pose>115.33 -155.49 20.22 -1.702 0.105 0.288</pose>
+    </include>
+
+    <include>
+      <name>phone_2</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Samsung J8 Black</uri>
+      <pose>72.09 -112.69 30.08 -1.570796 0.03 0.0</pose>
+    </include>
+
+    <include>
+      <name>phone_3</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Samsung J8 Black</uri>
+      <pose>286.74 48.57 12 -2.0 -0.06 0.33</pose>
+    </include>
+
+    <include>
+      <name>phone_4</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Samsung J8 Black</uri>
+      <pose>148.99 -125.66 21.49 -1.93 -0.13 1.62</pose>
+    </include>
+
+    <include>
+      <name>phone_5</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Samsung J8 Black</uri>
+      <pose>-1.79 -180.47 55.61 -1.570796 0.22 0.56</pose>
+    </include>
+
+    <include>
+      <name>phone_6</name>
+      <pose>188.25 -46.80 10.25 -1.42 0.08 -0.68</pose>
+      <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Samsung J8 Black</uri>
+    </include>
+
     <wind>
       <linear_velocity>0.000000 0.000000 0.000000</linear_velocity>
     </wind>
