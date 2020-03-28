@@ -162,29 +162,29 @@
     <include>
       <static>true</static>
       <name>tile_17</name>
-      <pose>100 -50 20 0 -0 -3.14159</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F</uri>
+      <pose>100 -50 20 -0 -0 4e-06</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F D</uri>
     </include>
 
     <include>
       <static>true</static>
       <name>tile_18</name>
-      <pose>125 -75 20 0 0 -1.57079</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F</uri>
+      <pose>125 -75 20 0 -0 1.5708</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F D</uri>
     </include>
 
     <include>
       <static>true</static>
       <name>tile_19</name>
-      <pose>100 -75 20 0 0 -4e-06</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F</uri>
+      <pose>100 -75 20 0 -0 3.14159</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F D</uri>
     </include>
 
     <include>
       <static>true</static>
       <name>tile_20</name>
-      <pose>150 -75 20 0 -0 1.5708</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F</uri>
+      <pose>150 -75 20 0 -0 -1.5708</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F D</uri>
     </include>
 
     <include>
@@ -197,8 +197,8 @@
     <include>
       <static>true</static>
       <name>tile_22</name>
-      <pose>175 -100 20 0 0 -4e-06</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F</uri>
+      <pose>175 -100 20 0 -0 3.14159</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F D</uri>
     </include>
 
     <include>
@@ -324,7 +324,7 @@
       <static>true</static>
       <name>tile_38</name>
       <pose>175 -150 20 0 -0 -3.14159</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30</uri>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30 D</uri>
     </include>
 
     <include>
@@ -478,7 +478,7 @@
       <static>true</static>
       <name>tile_58</name>
       <pose>225 100 10 0 0 -1.57079</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30</uri>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30 D</uri>
     </include>
 
     <include>
@@ -492,7 +492,7 @@
       <static>true</static>
       <name>tile_60</name>
       <pose>269.976 118.75 9.99999 0 -0 -2.61799</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30</uri>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30 D</uri>
     </include>
 
     <include>
@@ -506,7 +506,7 @@
       <static>true</static>
       <name>tile_62</name>
       <pose>250 75 10 0 -0 -3.14159</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30</uri>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30 D</uri>
     </include>
 
     <include>
@@ -610,8 +610,8 @@
     <include>
       <static>true</static>
       <name>tile_74</name>
-      <pose>50 -50 0 0 -0 -1.5708</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F</uri>
+      <pose>50 -50 0 -0 -0 1.57079</pose>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30F D</uri>
     </include>
 
     <include>
@@ -625,8 +625,9 @@
       <static>true</static>
       <name>tile_75</name>
       <pose>73.3253 -56.25 4e-06 0 -0 2.618</pose>
-       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30</uri>
+       <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Cave Corner 30 D</uri>
     </include>
+
 
     <include>
       <name>rescue_randy_1</name>
