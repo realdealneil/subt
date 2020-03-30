@@ -52,6 +52,50 @@ def spawner(_name, _modelURI, _worldName, _x, _y, _z, _roll, _pitch, _yaw)
         <update_rate>10</update_rate>
         <type>gas</type>
       </plugin>
+      <plugin filename="libignition-gazebo-breadcrumbs-system.so"
+        name="ignition::gazebo::systems::Breadcrumbs">
+        <topic>/model/#{_name}/breadcrumb/deploy</topic>
+        <max_deployments>12</max_deployments>
+        <breadcrumb>
+          <sdf version="1.6">
+            <model name="#{_name}__breadcrumb__">
+              <pose>-0.6 0 0 0 0 0</pose>
+              <link name='body'>
+                <inertial>
+                  <mass>1</mass>
+                  <inertia>
+                    <ixx>0.0025803</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.00438</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.00555</izz>
+                  </inertia>
+                </inertial>
+                <visual name='visual'>
+                  <geometry>
+                    <box>
+                      <size>0.21 0.15 0.092</size>
+                    </box>
+                  </geometry>
+                  <material>
+                    <ambient>0.0 0.0 0.0 1</ambient>
+                    <diffuse>0.1 0.1 0.1 1</diffuse>
+                    <specular>0.2 0.2 0.2 1</specular>
+                  </material>
+                </visual>
+                <collision name='collision'>
+                  <geometry>
+                    <box>
+                      <size>0.21 0.15 0.092</size>
+                    </box>
+                  </geometry>
+                </collision>
+              </link>
+            </model>
+          </sdf>
+        </breadcrumb>
+      </plugin>
     </include>
     </sdf>
   </plugin>

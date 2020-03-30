@@ -165,6 +165,6 @@
 
 <%= spawner(robotName, modelURI, $worldName, 0, 0, 0, 0, 0, 0) %>
 <%= rosExecutables(robotName, $worldName) %>
- 
+
 </ignition>
 
