@@ -1108,8 +1108,8 @@
         <specular>0.8 0.8 0.5 1</specular>
         <spot>
           <!-- The lights on the MARBLE ground vehicles are very wide angle, 100W LEDs -->
-          <inner_angle>3.1459</inner_angle>
-          <outer_angle>3.1459</outer_angle>
+          <inner_angle>3.0</inner_angle>
+          <outer_angle>3.1</outer_angle>
           <falloff>1</falloff>
         </spot>
         <direction>0 0 -1</direction>
@@ -1126,8 +1126,8 @@
         <specular>0.8 0.8 0.5 1</specular>
         <spot>
           <!-- The lights on the MARBLE ground vehicles are very wide angle, 100W LEDs -->
-          <inner_angle>3.1459</inner_angle>
-          <outer_angle>3.1459</outer_angle>
+          <inner_angle>3.0</inner_angle>
+          <outer_angle>3.1</outer_angle>
           <falloff>1</falloff>
         </spot>
         <direction>0 0 -1</direction>
