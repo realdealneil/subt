@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<robot name='marble_husky_sensor_config_1'>
+<robot name='marble_husky_sensor_config_6'>
   <link name='base_link'>
     <inertial>
       <origin xyz='-0.000543 -0.084945 0.062329' rpy='0 -0 0'/>

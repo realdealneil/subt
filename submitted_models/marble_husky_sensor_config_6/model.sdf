@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <sdf version="1.6">
-  <model name="marble_husky_sensor_config_1">
+  <model name="marble_husky_sensor_config_6">
     <link name="base_link">
       <pose frame="">0 0 0 0 -0 0</pose>
       <inertial>
@@ -874,19 +874,23 @@
           </cylinder>
         </geometry>
       </visual>
-      <!-- Based on Intel realsense D435 (intrinsics and distortion not modeled)-->
-      <sensor name="camera_pan_tilt" type="rgbd_camera">
-        <camera name="camera_pan_tilt">
-            <horizontal_fov>1.5184</horizontal_fov>
+
+      <!-- Based on IMX477 (intrinsics and distortion not modeled)-->
+      <sensor name="front_gimbal_cam" type="camera">
+        <pose>0.05 0 0.03 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>20</update_rate>
+        <camera name="front_gimbal_cam">
+            <horizontal_fov>0.8971</horizontal_fov>
             <lens>
                 <intrinsics>
                     <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
-                    <fx>337.22195</fx>
-                    <fy>337.22195</fy>
+                    <fx>706.5</fx>
+                    <fy>706.5</fy>
                     <!-- cx = ( width + 1 ) / 2 -->
-                    <cx>320.5</cx>
+                    <cx>340.5</cx>
                     <!-- cy = ( height + 1 ) / 2 -->
-                    <cy>240.5</cy>
+                    <cy>340.5</cy>
                     <s>0</s>
                 </intrinsics>
             </lens>
@@ -899,43 +903,184 @@
                 <center>0.5 0.5</center>
             </distortion>
             <image>
-                <width>640</width>
-                <height>480</height>
+                <width>680</width>
+                <height>680</height>
                 <format>R8G8B8</format>
             </image>
             <clip>
                 <near>0.01</near>
                 <far>300</far>
             </clip>
-            <depth_camera>
-              <clip>
-                <near>0.1</near>
-                <far>10</far>
-              </clip>
-            </depth_camera>
             <noise>
                 <type>gaussian</type>
                 <mean>0</mean>
                 <stddev>0.007</stddev>
             </noise>
         </camera>
-        <always_on>1</always_on>
-        <update_rate>30</update_rate>
-        <visualize>0</visualize>
-        
-        <pose frame="">0.0 0 0.03 0 0.0 0</pose> 
-      </sensor>
-      <gravity>1</gravity>
-      <velocity_decay/>
+    </sensor>
+
+    <sensor name="left_gimbal_cam" type="camera">
+      <pose>0.0 0.05 0.03 0 0 1.5708</pose>
+      <always_on>1</always_on>
+      <update_rate>20</update_rate>
+      <camera name="left_gimbal_cam">
+          <horizontal_fov>0.8971</horizontal_fov>
+          <lens>
+              <intrinsics>
+                  <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+                  <fx>706.5</fx>
+                  <fy>706.5</fy>
+                  <!-- cx = ( width + 1 ) / 2 -->
+                  <cx>340.5</cx>
+                  <!-- cy = ( height + 1 ) / 2 -->
+                  <cy>340.5</cy>
+                  <s>0</s>
+              </intrinsics>
+          </lens>
+          <distortion>
+              <k1>0.0</k1>
+              <k2>0.0</k2>
+              <k3>0.0</k3>
+              <p1>0.0</p1>
+              <p2>0.0</p2>
+              <center>0.5 0.5</center>
+          </distortion>
+          <image>
+              <width>680</width>
+              <height>680</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.01</near>
+              <far>300</far>
+          </clip>
+          <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+          </noise>
+      </camera>
+    </sensor>
+
+    <sensor name="right_gimbal_cam" type="camera">
+      <pose>0.0 -0.05 0.03 0 0 -1.5708</pose>
+      <always_on>1</always_on>
+      <update_rate>20</update_rate>
+      <camera name="right_gimbal_cam">
+          <horizontal_fov>0.8971</horizontal_fov>
+          <lens>
+              <intrinsics>
+                  <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+                  <fx>706.5</fx>
+                  <fy>706.5</fy>
+                  <!-- cx = ( width + 1 ) / 2 -->
+                  <cx>340.5</cx>
+                  <!-- cy = ( height + 1 ) / 2 -->
+                  <cy>340.5</cy>
+                  <s>0</s>
+              </intrinsics>
+          </lens>
+          <distortion>
+              <k1>0.0</k1>
+              <k2>0.0</k2>
+              <k3>0.0</k3>
+              <p1>0.0</p1>
+              <p2>0.0</p2>
+              <center>0.5 0.5</center>
+          </distortion>
+          <image>
+              <width>680</width>
+              <height>680</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.01</near>
+              <far>300</far>
+          </clip>
+          <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+          </noise>
+      </camera>
+    </sensor>
+
+    <sensor name="back_gimbal_cam" type="camera">
+      <pose>-0.05 0 0.03 0 0 3.14159</pose>
+      <always_on>1</always_on>
+      <update_rate>20</update_rate>
+      <camera name="back_gimbal_cam">
+          <horizontal_fov>0.8971</horizontal_fov>
+          <lens>
+              <intrinsics>
+                  <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+                  <fx>706.5</fx>
+                  <fy>706.5</fy>
+                  <!-- cx = ( width + 1 ) / 2 -->
+                  <cx>340.5</cx>
+                  <!-- cy = ( height + 1 ) / 2 -->
+                  <cy>340.5</cy>
+                  <s>0</s>
+              </intrinsics>
+          </lens>
+          <distortion>
+              <k1>0.0</k1>
+              <k2>0.0</k2>
+              <k3>0.0</k3>
+              <p1>0.0</p1>
+              <p2>0.0</p2>
+              <center>0.5 0.5</center>
+          </distortion>
+          <image>
+              <width>680</width>
+              <height>680</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.01</near>
+              <far>300</far>
+          </clip>
+          <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+          </noise>
+      </camera>
+    </sensor>
+
       <visual name="tilt_gimbal_link_fixed_joint_lump__camera/camera_link_visual_0">
-        <pose frame="">0 0 0.03 0 0.0 0</pose>
+        <pose>0.05 0 0.03 0 0 0</pose>
         <geometry>
           <mesh>
             <uri>meshes/realsense.dae</uri>
           </mesh>
         </geometry>
       </visual>
-      <visual name="tilt_gimbal_link_fixed_joint_lump_bot_camera_plate_link_visual_1">
+      <visual name="tilt_gimbal_link_fixed_joint_lump__camera/camera_link_visual_1">
+       <pose>0.0 0.05 0.03 0 0 1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>meshes/realsense.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="tilt_gimbal_link_fixed_joint_lump__camera/camera_link_visual_2">
+        <pose>0.0 -0.05 0.03 0 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>meshes/realsense.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="tilt_gimbal_link_fixed_joint_lump__camera/camera_link_visual_3">
+        <pose>-0.05 0 0.03 0 0 3.14159</pose>
+        <geometry>
+          <mesh>
+            <uri>meshes/realsense.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name="tilt_gimbal_link_fixed_joint_lump_bot_camera_plate_link_visual_4">
        <pose frame="">0 0 0.017 0 -0 0</pose>
         <geometry>
           <box>
@@ -943,7 +1088,7 @@
           </box>
         </geometry>
       </visual>
-      <visual name="tilt_gimbal_link_fixed_joint_lump_bot_camera_plate_link_visual_2">
+      <visual name="tilt_gimbal_link_fixed_joint_lump_bot_camera_plate_link_visual_5">
        <pose frame="">0 0 0.042 0 -0 0</pose>
         <geometry>
           <box>
@@ -963,8 +1108,26 @@
         <specular>0.8 0.8 0.5 1</specular>
         <spot>
           <!-- The lights on the MARBLE ground vehicles are very wide angle, 100W LEDs -->
-          <inner_angle>2.8</inner_angle>
-          <outer_angle>2.9</outer_angle>
+          <inner_angle>3.1459</inner_angle>
+          <outer_angle>3.1459</outer_angle>
+          <falloff>1</falloff>
+        </spot>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="flashlight_flashlight_light_source_lamp_light_1" type="spot">
+        <pose frame="">0.0 0.0 0.065 3.141592653589793 1.5707963267948966 3.141592653589793</pose>
+        <attenuation>
+          <range>50</range>
+          <linear>0</linear>
+          <constant>0.1</constant>
+          <quadratic>0.0025</quadratic>
+        </attenuation>
+        <diffuse>0.8 0.8 0.5 1</diffuse>
+        <specular>0.8 0.8 0.5 1</specular>
+        <spot>
+          <!-- The lights on the MARBLE ground vehicles are very wide angle, 100W LEDs -->
+          <inner_angle>3.1459</inner_angle>
+          <outer_angle>3.1459</outer_angle>
           <falloff>1</falloff>
         </spot>
         <direction>0 0 -1</direction>
